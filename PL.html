@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	
+	<title>DN - Highcharts.js mockups</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="css/dnhc_2.css">
+	
+</head>
+<body>
+
+	<div class="mock-wrapper">
+		
+
+			<div data-custom-nav='true' id="DNHC_Partiledarfortroende"></div>
+
+            <div data-custom-nav='true' id="ankka"></div>
+
+
+	</div><!-- /mock wrapper -->
+	
+	<script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/highstock.js"></script>
+    
+	<script src="js/dnhc_pl.js"></script>
+
+	<script>
+	    var months = [
+                   "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+                   "Juli", "Augusti", "September", "Oktober", "November", "December"
+	    ];
+
+        
+	$(function () {
+	    'use strict';
+	    var getJson = jQuery.getJSON('ImportedFiles/ChartData_106_2014-03-13_04-36-25.js');
+	    getJson.done(function (data) {
+	        new DNHC($('#DNHC_Partiledarfortroende'), data, barChartOptions);
+	    });
+	});
+        
+	$.date = function (dateObject) {
+	    var d = new Date(dateObject);
+	    var month = d.getMonth() + 1;
+	    var year = d.getFullYear();
+	    month = month - 1;
+
+	    var date = months[month] + ' ' + year;
+	    return date;
+	};
+
+	function parseJsonDate(jsonDateString) {
+	    if (jsonDateString != null) {
+	        return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+	    } else {
+	        return '';
+	    }
+
+	}
+
+	var leadersInTime = '{"4 2000":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Lotta Nilsson Hedström"},{"Key":"mp (man)","Value":"Matz Hammarström"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Lennart Daléus"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"9 2000":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Lotta Nilsson Hedström"},{"Key":"mp (man)","Value":"Matz Hammarström"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Lennart Daléus"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"3 2001":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Lotta Nilsson Hedström"},{"Key":"mp (man)","Value":"Matz Hammarström"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"9 2001":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Lotta Nilsson Hedström"},{"Key":"mp (man)","Value":"Matz Hammarström"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"3 2002":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"8 2002":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Gudrun Schyman"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Bo Lundgren"}],"3 2003":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Ulla Hoffmann"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"9 2003":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Ulla Hoffmann"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Alf Svensson"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"4 2004":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"8 2004":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Mikael Jansson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"2 2005":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"9 2005":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"12 2005":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2006":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"8 2006":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Lars Leijonborg"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2007":[{"Key":"s","Value":"Göran Persson"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"9 2007":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2008":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2009":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"11 2009":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2010":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Maria Wetterstrand"},{"Key":"mp (man)","Value":"Peter Eriksson"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Maud Olofsson"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"3 2011":[{"Key":"s","Value":"Mona Sahlin"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"10 2011":[{"Key":"s","Value":"Håkan Juholt"},{"Key":"v","Value":"Lars Ohly"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"10 2012":[{"Key":"s","Value":"Stefan Löfvén"},{"Key":"v","Value":"Jonas Sjöstedt"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"2 2013":[{"Key":"s","Value":"Stefan Löfvén"},{"Key":"v","Value":"Jonas Sjöstedt"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"6 2013":[{"Key":"s","Value":"Stefan Löfvén"},{"Key":"v","Value":"Jonas Sjöstedt"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}],"10 2013":[{"Key":"s","Value":"Stefan Löfvén"},{"Key":"v","Value":"Jonas Sjöstedt"},{"Key":"mp (kv)","Value":"Åsa Romson"},{"Key":"mp (man)","Value":"Gustav Fridolin"},{"Key":"sd","Value":"Jimmie Åkesson"},{"Key":"c","Value":"Annie Lööf"},{"Key":"fp","Value":"Jan Björklund"},{"Key":"kd","Value":"Göran Hägglund"},{"Key":"m","Value":"Fredrik Reinfeldt"}]}';
+
+	var getSerieData = function (parti, fullName, serieData)
+	{
+	    var str = '';
+	    $.each(serieData, function (i, it) {
+	        if (it.series.name.toLowerCase() == parti.toLowerCase())
+	        {
+	            str = '<td style="font-weight:bold;color:' + it.series.color + '">' + fullName + ' (' + parti.toUpperCase() + ')</td><td><b>' + it.y + '%</b></td>';
+
+	        }
+	    });
+	    return str;
+	}
+
+	var getTooltipInfo = function (date) {
+	    var d = new Date(date.x);
+	    var my = d.getMonth() + 1 + ' ' + d.getFullYear();
+	    var str = '<table><tr><td><b>' + months[d.getMonth() + 1] + ' ' + d.getFullYear() + '</b></td></tr>';
+	    var data = jQuery.parseJSON(leadersInTime);
+	    for (var key in data) {
+	        if (data.hasOwnProperty(key) && key == my) {
+	            var x = data[key];
+	            $.each(x, function (i, item) {
+	                str += '<tr>' + getSerieData(item.Key, item.Value, date.points) + '</tr>';
+	            });
+	        }
+	    }
+	    return  str + '</table>';	   
+	};
+
+	var barChartOptions = {
+        credits: {
+            enabled: false
+        },
+        formatter: function () {
+            return '<b>' + this.point.name + '</b><br /><b>' + this.point.y +
+                ' %</b></b><br />';
+        },
+        title: {
+            align: 'left',
+            text: 'Partiledarförtroende'
+        },
+        chart: {
+            type: 'spline',
+            margin: [50, 50, 40, 90]
+        },
+        legend: {
+            y: 15
+        },
+        rangeSelector: {
+            enabled: true,
+            buttons: {
+                count: 0
+                
+            }
+        },
+        navigator: {
+            adaptToUpdatedData: true,
+            baseSeries: 0,
+            handles: {
+                backgroundColor: '#333',
+                borderColor: 'black'
+            }
+        },
+        scrollbar: {
+            barBackgroundColor: '#333',
+            barBorderRadius: 5,
+            barBorderWidth: 0,
+            buttonBackgroundColor: '#000',
+            buttonBorderWidth: 0,
+            buttonBorderRadius: 5,
+            trackBackgroundColor: 'none',
+            trackBorderWidth: 1,
+            trackBorderRadius: 5,
+            trackBorderColor: '#333'
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 80,
+            dateTimeLabelFormats: {
+                month: '%b %Y'
+            },
+        },
+        yAxis: {
+            labels: {
+                formatter: function () {
+                    return this.value + ' ' + '%';
+                },
+                x:-25 
+            },
+            title: {
+                text: ''
+            }
+        },
+        line: {
+            width: 5
+        },
+        plotOptions: {
+            series: {
+                lineWidth: 2.5,
+                states: {
+                    hover: {
+                        enabled: true,
+                        lineWidth: 2.5
+                    }
+                }
+            },
+            width: 6,
+            
+            spline: {
+                
+                marker: {
+                    enabled: false,
+                    radius: 1,
+                    fillColor: '#000',
+                    lineColor: '#fff',
+                    lineWidth: 0.5,
+                    symbol: 'circle',
+                    states: {
+                        hover: {
+                            enabled: true,
+                            linewidt: 1
+                        }
+                    }
+                }
+                },
+                column: {
+                stacked: 'normal'
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            pointFormat: '<span class="hBlocks">q{point.x}g</span>J<br />{point.name}'
+        },
+        series: [],
+        tooltip: {
+            borderRadius: 0,
+            borderWidth: 1,
+            borderColor: '#999',
+            
+            formatter: function () {
+                return getTooltipInfo(this); 
+            },
+            shared: true,
+            useHTML: true
+        }
+	};
+	</script>
+
+</body>
+</html>

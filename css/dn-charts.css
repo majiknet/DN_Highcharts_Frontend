@@ -1,0 +1,173 @@
+
+/* CUSTOM LEGEND NAVIGATION
+---------------------------------------------*/
+
+.dnhc_legend-nav__container {
+    padding: 0 10px;
+    margin-bottom: 1.5em;
+}
+
+.dnhc_legend-nav {
+    margin-bottom: 1em;
+    width: 100%;
+    text-align: center;
+}
+
+.dnhc_legend-nav__button {
+    padding: .5em;
+    display: inline-block;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.dnhc_legend-nav__button img {
+    display: block;
+}
+
+.dnhc_legend-nav__button:focus,
+.dnhc_legend-nav__button:hover {
+    background: #e5f4ff;
+}
+
+.dnhc_legend-nav__button + .dnhc_legend-nav__button {
+    /*border-left: 1px dotted #aaa;*/
+}
+
+.dnhc_legend-nav__button > span {
+    display: inline-block;
+    padding: 4px 0;
+
+    /* oldIE fix */
+    *display: inline;
+    *zoom: 1;
+}
+
+.dnhc_legend-nav__button__inactive > span {
+    opacity: .4;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+
+.dnhc_legend-nav__button-title {
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+    font-size: 13px;
+}
+
+/* TOGGLERS
+---------------------------------------------------*/
+
+.dnhc_legend-nav__toggler {
+    margin: 0;
+    padding: 2px 0;
+    list-style: none;
+    font-size: 13px;
+
+    overflow: hidden; /* contain floated elements */
+}
+
+.dnhc_legend-nav__module {
+    margin: .5em 0;
+    display: inline-block;
+
+    /* oldIE fix */
+    *display: inline;
+    *zoom: 1;
+}
+
+.dnhc_legend-nav__module:first-child {
+    margin-right: 1em;
+}
+
+.dnhc_legend-nav__module a {
+    padding: .3em .5em;
+    text-decoration: none;
+    background: #000;
+    color: #fff;
+    font-family: arial, sans-serif;
+}
+
+.dnhc_legend-nav__module a:hover,
+.dnhc_legend-nav__module a:focus {
+    background: #444;
+}
+
+.dnhc_legend-nav__module a,
+.dnhc_legend-nav__module p {
+    display: inline-block;
+    
+    /* oldIE fix */
+    *display: inline;
+    *zoom: 1;
+}
+
+.dnhc_legend-nav__module > a {
+    margin-right: 1px;
+}
+
+.dnhc_legend-nav__module > p {
+    margin: 0 .5em 0 0;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+}
+
+.dnhc_legend-nav__reset-zoom-button--disabled {
+    background: #ddd !important;
+    cursor: default;
+}
+
+
+/* ICONS
+---------------------------------------------------*/
+
+ /* TODO: make it not so "experimental" */
+.dnhc_icon {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 42px;
+    background: url(../assets/sprites/dnhc-sprite.png) no-repeat top left;
+}
+
+
+.dnhc_icon--all .dnhc_icon     { background-position: 0 0; width: 42px; height: 42px; } 
+.dnhc_icon--c .dnhc_icon       { background-position: 0 -92px; width: 42px; height: 42px; } 
+.dnhc_icon--fp .dnhc_icon     { background-position: 0 -184px; width: 42px; height: 42px; } 
+.dnhc_icon--kd .dnhc_icon      { background-position: 0 -276px; width: 42px; height: 42px; } 
+.dnhc_icon--m .dnhc_icon      { background-position: 0 -368px; width: 42px; height: 42px; } 
+.dnhc_icon--mp .dnhc_icon     { background-position: 0 -460px; width: 42px; height: 42px; } 
+.dnhc_icon--ov .dnhc_icon     { background-position: 0 -552px; width: 42px; height: 42px; } 
+.dnhc_icon--s  .dnhc_icon     { background-position: 0 -644px; width: 42px; height: 42px; } 
+.dnhc_icon--sd .dnhc_icon     { background-position: 0 -736px; width: 42px; height: 42px; } 
+.dnhc_icon--v  .dnhc_icon     { background-position: 0 -828px; width: 42px; height: 42px; }
+
+
+/* MEDIA QUERY BREAKPOINTS
+---------------------------------------------------*/
+
+@media screen and (max-width: 550px) {
+    
+    .dnhc_legend-nav {
+        display: block;
+        overflow: hidden;
+    }
+
+    .dnhc_legend-nav__button {
+        display: block;
+        float: left;
+        width: 20%;
+        margin: 0 -1px .5em;
+    }
+
+    .dnhc_legend-nav__button:nth-child(6) {
+        border: none;
+    }
+
+}
+
+
