@@ -1,7 +1,21 @@
 /*global Highcharts, jQuery, $*/
 
 var DNHC;
- var _pubSub = $({});
+var _pubSub = $({});
+
+var getPartiName = function(partiName)
+{
+    if(partiName.indexOf('kv') > -1 || partiName.indexOf('man') > -1)
+    {
+        return 'MP';
+    }    
+    else
+    {
+        return partiName.toUpperCase();
+    }
+    return '';
+};
+
 (function () {
     'use strict';
     
@@ -36,7 +50,6 @@ var DNHC;
     }
 
     var hideZoomBar = function (chart) {
-        console.log(chart);
         chart.rangeSelector.zoomText.hide();
         $.each(chart.rangeSelector.buttons, function () {
             this.hide();
@@ -85,7 +98,7 @@ var DNHC;
                 
                 this.createLegendNav();
                 this.insertLegendNav();
-                this.createTogglers();
+            //    this.createTogglers();
             },
 
             toggleSeries: function (e) {
@@ -115,7 +128,7 @@ var DNHC;
                     
                     if (legend.name !== 'custom') {
                         $legendNavItem = $('<a href="javascript:void(0)">'+
-                            '<span><span class="' + selector.itemTitle + '">' + legend.name + '</span><span class="' + selector.iconClass + '"></span></span>'+
+                            '<span><span class="' + selector.itemTitle + '">' + getPartiName(legend.name) + '</span><span class="' + selector.iconClass + '"></span></span>'+
                             '</a>').addClass(selector.button + ' ' + selector.iconPrefix + legend.name.toLowerCase() || 'default');
                         _this.$legendNav.append($legendNavItem);
                     }
@@ -264,7 +277,6 @@ var DNHC;
         }
         //   hideZoomBar(this);
         //chart.rangeSelector.zoomText.hide();
-        console.log(chartSettings.rangeSelector.buttons.zoomText);
         chartSettings.chart.renderTo = this.elID;
 
         // make a new chart instance

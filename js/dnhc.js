@@ -93,15 +93,44 @@
             text: 'Partisympatier 1979-2013',
             align: 'left'
         },
+        /*
+        tooltip: {
+            shared: false,
+            useHtml: true
 
+        },*/
+        navigator: {
+            adaptToUpdatedData: true,
+            baseSeries: 0,
+            handles: {
+                backgroundColor: '#d9dadb',
+                borderColor: '#777'
+            }
+        },
+        scrollbar: {
+            barBackgroundColor: '#d9dadb',
+            barBorderRadius: 5,
+            barBorderWidth: 0,
+            buttonBackgroundColor: '#d9dadb',
+            buttonBorderWidth: 0,
+            buttonBorderRadius: 5,
+            trackBackgroundColor: 'none',
+            trackBorderWidth: 1,
+            trackBorderRadius: 5,
+            trackBorderColor: '#d9dadb'
+        },
+
+        rangeSelector: {
+            enabled: false       
+        },
         tooltip: {
             backgroundColor: 'rgba(255,255,255,.7)',
             borderColor: '#999',
             borderRadius: 0,
             borderWidth: 1,
             shadow: false,
+            shared: false,
             formatter: function() {
-                /*
                 if (this.series.name === 'custom') {
                     return Highcharts.dateFormat('%b %Y', new Date(this.x)) + '<br /><br />' + this.point.text;
                 } else {
@@ -110,12 +139,10 @@
                     if (this.point.text) {
                         pointText = this.point.text;
                     }
-
-                    
                 }
-                */
-                return Highcharts.dateFormat('%b %Y', new Date(this.x)) + '<br /><b> ' + this.y + '%</b><br />';
+                return Highcharts.dateFormat('%b %Y', new Date(this.x)) + '<b> ' + this.y + '%</b><br />' + pointText;
             }
+            
         },
 
         xAxis: {
@@ -293,7 +320,7 @@
             }
         },
 
-        legend: {
+        legend: {       
             borderWidth: 0
         },
 
@@ -378,7 +405,8 @@
                     _this.addNewSeries(chart, dateTimeChartData);
                     _this.addNewSeries(chart, dateTimeChartHappeningsData);
                 });
-
+                        
+                        
                 this.createDateTimeChart();
             },
 
@@ -436,12 +464,13 @@
                 };
 
                 LegendNav.prototype = {
-
+ 
                     init: function () {
+
                         this.$container = $('<div class="' + selector.legendNav.legendNavContainer + '"></div>');
                         this.$legendNav = $('<div class="' + selector.legendNav.container + '"></div>');
                         this.$legendNav.on('click', '.' + selector.legendNav.button, $.proxy(this.toggleSeries, this));
-
+                        
                         $.when(this.createLegendNav(), this.createTogglers()).then(
                                 $.proxy(this.insertLegendNav, this)
                             );
@@ -589,8 +618,7 @@
 
                         $.each(this.series, function (i, legend) {
 
-                            if (self.series[i].name !== 'custom') {
-                                 
+                            if (self.series[i].name !== 'custom' && legend.name.toLowerCase() !== 'navigator') {
                                 $legendNavItem = $('<a href="javascript:void(0)"><span><span class="' + selector.legendNav.itemTitle + '">' + legend.name + '</span><span class="' + selector.legendNav.iconClass + '"></span></span></a>').addClass(selector.legendNav.button + ' ' + selector.legendNav.iconPrefix + legend.name.toLowerCase() || 'default');
                                 self.$legendNav.append($legendNavItem);
 

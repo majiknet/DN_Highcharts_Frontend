@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>DN - Highcharts.js mockups</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+	<link rel="stylesheet" href="css/dnhc_2.css">
+    
+    
+</head>
+<body>
+    <style>
+        table.tt tr td {
+            vertical-align:top;
+            
+        }
+        table.tt tr td.td1 {
+            padding: 0px 0px 0 0;    
+            width: 41px;
+        }
+        table.tt tr td.td2 {
+            padding: 2px 0 0 0;    
+        }
+        table.tt tr .tdRight {
+            text-align:right;
+        }
+
+        table.tt table, table.tt table tr {
+            padding:0;
+            margin:0;
+        }
+
+        table.tt tr td.td2Percentage, table.tt tr td.td2PercentageLeft
+        {
+            font-size: 24px;
+            padding-top: 5px;
+            font-family: PublicoBlack, Georgia, serif;
+            color: #333!important;
+        }
+
+        table.tt tr td.td2PercentageLeft {
+            padding-left: 4px;
+        }
+    </style>
+
+        <div data-custom-nav='true' id="BarWrapper"></div>
+
+
+	<script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/highcharts.js"></script>
+        <script>
+
+            $(document).ready(function () {
+                var extraData = [
+                                ['Mars 2007', 'm', 'Fredrik Reinfeldt', 'Cras eu tortor gravida, mattis nisl sit amet', 'Reinfeldt.jpg'],
+                                ['Oktober 2007', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['September 2008', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['September 2009', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['Mars 2010', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['Juni 2010', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['September 2010', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['November 2011', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['Mars 2012', 'm', 'Fredrik Reinfeldt', 'Reinfeldt tappar när Löfven kliver in', 'Reinfeldt.jpg'],
+                                ['April 2013', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['Mars 2007', 's', 'Göran Persson', 'Här avgick Göran och ersättes av Mona Sahlin', 'Persson.jpg'],
+                                ['Oktober 2007', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['September 2008', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['September 2009', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['Mars 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['Juni 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['September 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
+                                ['November 2011', 's', 'Håkan Juholt', 'Så här gick det under Juholts tid', 'Juholt.jpg'],
+                                ['Mars 2012', 's', 'Stefan Löfven', 'Stefan tar över S', 'Lofven.jpg'],
+                                ['April 2013', 's', 'Stefan Löfven', '', 'Lofven.jpg']
+                ];
+
+                var getTooltipInfo = function (date) {
+                    var str = '<tr><td colspan="2"><b>' + date.x + '</b></td></tr>';
+                    
+                    var count = 0;
+                    var extraText = '';
+                    $.each(extraData, function (index)  
+                    {
+                        if (extraData[index][0] == date.x)
+                        {
+                            if (extraData[index][1] == 'm')
+                            {
+                                str += '<tr><td><table><tr><td colspan="2"><b style="color:#21acd8">' + extraData[index][2] + '</b>&nbsp;</td></tr><tr><td class="td1"><img src="/Documents/Charts/Images/Portraits/' + extraData[index][4] + '" /></td><td class="td2 td2PercentageLeft"><b style="color:#21acd8">' + date.points[count].y + '%</b></td></tr></table></td>';
+                            }
+                            else
+                            {
+                                str += '<td><table><tr><td colspan="2" class="tdRight"><b style="color:#f5181e">' + extraData[index][2] + '</b></td></tr><tr><td class="td2 td2Percentage"><b style="color:#f5181e">' + date.points[count].y + '%</b></td><td class="td1"><img src="/Documents/Charts/Images/Portraits/' + extraData[index][4] + '" /></td></tr></table></td></tr>';
+                            }
+                            count++;
+                        
+                            if (extraText != '')
+                            {
+                                extraText += '<br />' + getExtraTooltipText(extraData[index][3]);
+                            }
+                            else
+                            {
+                                extraText = getExtraTooltipText(extraData[index][3]);
+                            }
+                        }
+                    });
+
+                    
+                    str = '<table class="tt">' + str + '<tr><td colspan="2">' + extraText + '</td></tr></table>';
+                    return '<div>XXX</div>';
+                };
+
+                var getExtraTooltipText = function (text) {
+                    if (text != null && text != '')
+                    {
+                        return text;
+                    }
+                    return '';
+                }
+                //getExtraTooltipText(extraData[index][3])
+
+                Highcharts.theme = {
+                    lang: {
+                        resetZoom: 'Zooma ut',
+                        resetZoomTitle: 'Zooma ut',
+                        months: ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'],
+                        shortMonths: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"]
+                    },
+                    title: {
+                        style: {
+                            color: '#000',
+                            font: '1.8em Georgia, serif',
+                            fontsize: '20px'
+                        }
+                    }
+                };
+                Highcharts.setOptions(Highcharts.theme);
+
+                $('#SelectQuestion').change(function () {
+                    var type = $(this).val();
+                    
+                    var jsonFilePath = 'ImportedFiles/ChartData_' + type + '.js';
+                    var myChart = $("#BarWrapper").highcharts();
+
+                    $(myChart.series).each(function (index) {
+                        myChart.series[index].setData([]);
+                    });
+
+                    var json = jQuery.getJSON(jsonFilePath, function (data) {
+                    });
+
+                    json.done(function (data) {
+                        var jsonCategoriesArray = [];
+
+                        $.each(data, function (index) {
+                            var obj = new Object();
+                            obj.name = data[index].name;
+                            obj.data = data[index].data;
+
+                            if (data[index].title != null) {
+                                nameData = data[0].title;
+                            } else {
+                                thisChartSeries.push(obj);
+                                myChart.addSeries({
+                                    type: 'spline',
+
+                                    name: obj.name,
+                                    color: index == 1 ? "#21acd8" : "#f5181e",
+                                    data: obj.data
+                                },
+                                    false);
+
+                                if (index == 1) {
+                                    jsonCategoriesArray = data[1].DatesList;
+                                }
+                            }
+                        });
+                        myChart.setTitle({ text: nameData });
+
+                        myChart.redraw();
+                        categoriesData = createDatesArray(jsonCategoriesArray);
+                    });
+
+                });
+
+                var nameData = '';
+                var thisChartSeries = [];
+                var categoriesData = [];
+
+                var jsonObj = jQuery.getJSON('ImportedFiles/ChartData_82.js', function (data) {
+
+                });
+
+                var months = [
+                    "Januari", "Februari", "Mars", "April", "Maj", "Juni",
+                    "Juli", "Augusti", "September", "Oktober", "November", "December"
+                ];
+                $.date = function (dateObject) {
+                    var d = new Date(dateObject);
+                    var month = d.getMonth() + 1;
+                    var year = d.getFullYear();
+                    month = month - 1;
+                    
+                    var date = months[month] + ' ' + year;
+                    return date;
+                };
+
+                function parseJsonDate(jsonDateString) {
+                    if (jsonDateString != null) {
+                        return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+                    } else {
+                        return '';
+                    }
+
+                }
+
+                function createDatesArray(categoriesData) {
+                    var freshData = [];
+                    $.each(categoriesData, function (i, data) {
+                        var parsedJsonDate = parseJsonDate(data);
+                        var date = '';
+                        if (parsedJsonDate != '') {
+                            var date = new Date(parsedJsonDate);
+                            freshData.push(
+                                $.date(date)
+                            );
+                        }
+                    });
+                    return freshData;
+                };
+
+                var barChartOptions = {
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: '',
+                        align: 'left'
+                    },
+                    chart: {
+                        type: 'spline',
+                        margin: [50, 20, 40, 60]
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    xAxis: [{
+                        categories: []
+                    }],
+                    type: 'datetime',
+                    dateTimeLabelFormats: { 
+                        month: '%e. %b',
+                        year: '%b'
+                    },
+                    yAxis: {
+                        labels: {
+                            formatter: function () {
+                                return this.value + ' ' + '%';
+                            }
+                        },
+                        title: {
+                            text: ''
+                        }
+                    },
+                    plotOptions: {
+                        series: {
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    linewidth: 1
+                                }
+                            },
+                            lineWidth: 2.5,
+                            marker: {
+                                enabled: false,
+                                radius: 2,
+                                fillColor: '#000',
+                                lineColor: '#fff',
+                                symbol: 'circle'
+                            }
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        pointFormat: '<span class="hBlocks">q{point.x}g</span>J<br />{point.name}'
+                    },
+                    series: thisChartSeries,
+                    tooltip: {
+                        borderRadius: 0,
+                        borderWidth: 1,
+                        borderColor: '#999',
+                        formatter: function () {
+                                   return getTooltipInfo(this);
+                        },
+                        shared: true,
+                        useHTML: true
+                    }
+                };
+
+
+                var DNHC;
+
+                (function () {
+                    'use strict';
+
+                    DNHC = function ($chartEl, opts) {
+                        this.elID = $chartEl.attr('id');
+                        opts.chart.renderTo = this.elID;
+                        // make a new chart instance
+                        opts.chart.series = thisChartSeries;
+                        opts.xAxis[0].categories = categoriesData;
+                        opts.title.text = nameData;
+                        this.chart = new Highcharts.Chart(opts);
+                    };
+                })();
+                
+                jsonObj.done(function (data) {
+                    var jsonCategoriesArray = [];
+                    $.each(data, function (index) {
+                        var obj = new Object();
+
+                        if (data[index].title != null) {
+                            nameData = data[index].title;
+
+                        } else {
+                            obj.name = data[index].name;
+                            obj.data = data[index].data;
+
+                            obj.color = index == 1 ? "#21acd8" : "#f5181e";
+
+                            if (index == 1) {
+                                jsonCategoriesArray = data[index].DatesList;
+                                categoriesData = createDatesArray(jsonCategoriesArray);
+                            }
+                            thisChartSeries.push(obj);
+                        }
+                    });
+                    
+                    new DNHC($("#BarWrapper"), barChartOptions);
+                });
+                
+
+
+            });
+        </script>
+        <br/>
+        <select id="SelectQuestion">
+            <option value="82">Skapa en majoritet för sin politik i riksdagen </option>
+            <option value="80">Leda regeringens arbete </option>
+            <option value="79">Företräda Sverige utomlands </option>
+            <option value="83">Ingjuta hopp om en bättre framtid för oss som bor i Sverige </option>
+            <option value="84">Att leda Sverige i händelse av en allvarlig kris </option>
+</select>
+</body>
+</html>
