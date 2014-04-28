@@ -56,7 +56,7 @@
         title: {
             style: {
                 color: '#000',
-                font: '2.8em Georgia, serif'
+                font: '1.5em Georgia, serif'
             }
         },
         subtitle: {
@@ -90,7 +90,7 @@
         },
 
         title: {
-            text: 'Partisympatier 1979-2013',
+            text: 'Partisympatier 1979-2014',
             align: 'left'
         },
         /*

@@ -23,5 +23,116 @@
     <script src="spec/test.js"></script>
 
     <script>mocha.run()</script>
+
+
+             <script src="/Documents/Charts/js/pieData_extended.js"></script>
+  
+        
+    <script>
+ 
+        var pieChartOptions = {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                margin: [0, 0, 0,0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.point.name + '</b><br /><b>' + this.point.y + ' %</b></b>';
+                },
+                 shared: true
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: false,
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '50%']
+                }
+            },
+            series: [
+            {
+                type: 'pie',
+                name: 'Politiska  Block',
+                size: '64%',
+                innerSize: '62%',
+                mouseOver: null,
+                allowPointSelect: false,
+                enableMouseTracking: false,
+                tooltip:
+                {
+                    enabled: false,
+                    pointFormat: null,
+                    formatter: function() {
+                        return '';
+                    } 
+                },
+                dataLabels: {
+                    enabled: false,
+                    pointFormat: '<span class="hBlocks">q{point.y}g</span>J<br />{point.name}',
+                    formatter: function () {
+                        if (this.point.name != 'Empty') {
+                            return '<div><span style="color: #b1b3b2;font-family: PublicoBlack, Georgia, serif;font-size: 4.1em;padding-bottom:5px;">' + this.point.y +
+                                '%</span><br /><span style="height:10px;visibility:hidden">' + this.point.y + '</span><br /><span style="color: #333;font-family: PublicoBlack, Georgia, serif;font-size: 1.4em;line-height:10px;margin:5px;">' + this.point.name + '</span></div>';
+                        } else {
+                            return '';
+                        }
+                    },
+                    useHtml: true,
+                    distance: 0
+
+                },
+                data: blocksData
+            },
+                {
+                    plotOptions: {
+                        pie: {
+                            
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.shortname}',
+                        distance: -20,
+                        style: {
+                            fontSize: 10,
+                            fontWeight: 'bold',
+
+                            color: '#fff'
+                        }
+                    },
+                    type: 'pie',
+                    name: 'Partier',
+                    size: '100%',
+                    innerSize: '70%',
+                    data: pieChartData
+                }]
+        };
+
+        var DNHC;
+
+        (function () {
+            'use strict';
+
+            DNHC = function ($chartEl, opts) {
+                var _this = this;
+                this.elID = $chartEl.attr('id');
+                opts.chart.renderTo = this.elID;
+                // make a new chart instance
+                this.chart = new Highcharts.Chart(opts);
+            };
+        })();
+
+        new DNHC($("#Pie"), pieChartOptions);
+    </script>
+
 </body>
 </html>

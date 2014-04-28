@@ -35,7 +35,7 @@ var getPartiName = function(partiName)
         title: {
             style: {
                 color: '#000',
-                font: '2.8em Georgia, serif'
+                font: '1.6em Georgia, serif'
             }
         }
     };
@@ -98,7 +98,6 @@ var getPartiName = function(partiName)
                 
                 this.createLegendNav();
                 this.insertLegendNav();
-            //    this.createTogglers();
             },
 
             toggleSeries: function (e) {
