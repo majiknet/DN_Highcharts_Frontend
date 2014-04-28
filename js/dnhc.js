@@ -108,16 +108,16 @@
             }
         },
         scrollbar: {
-            barBackgroundColor: '#d9dadb',
+            barBackgroundColor: '#333',
             barBorderRadius: 5,
             barBorderWidth: 0,
-            buttonBackgroundColor: '#d9dadb',
+            buttonBackgroundColor: '#000',
             buttonBorderWidth: 0,
             buttonBorderRadius: 5,
             trackBackgroundColor: 'none',
             trackBorderWidth: 1,
             trackBorderRadius: 5,
-            trackBorderColor: '#d9dadb'
+            trackBorderColor: '#333'
         },
 
         rangeSelector: {

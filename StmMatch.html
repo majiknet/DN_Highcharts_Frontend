@@ -44,7 +44,13 @@
             padding-left: 4px;
         }
     </style>
-
+        <select id="SelectQuestion">
+            <option value="Skapa-majoritet-2014-03">Skapa en majoritet för sin politik i riksdagen </option>
+            <option value="Leda_Sverige-2014-03">Leda regeringens arbete </option>
+            <option value="Foretrada-2014-03">Företräda Sverige utomlands </option>
+            <option value="Ingjuta_hopp-2014-03">Ingjuta hopp om en bättre framtid för oss som bor i Sverige </option>
+            <option value="Leda-i-kris-2014-03">Att leda Sverige i händelse av en allvarlig kris </option>
+</select>
         <div data-custom-nav='true' id="BarWrapper"></div>
 
 
@@ -54,6 +60,7 @@
 
             $(document).ready(function () {
                 var extraData = [
+                                ['September 2006', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['Mars 2007', 'm', 'Fredrik Reinfeldt', 'Cras eu tortor gravida, mattis nisl sit amet', 'Reinfeldt.jpg'],
                                 ['Oktober 2007', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['September 2008', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
@@ -64,6 +71,8 @@
                                 ['November 2011', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['Mars 2012', 'm', 'Fredrik Reinfeldt', 'Reinfeldt tappar när Löfven kliver in', 'Reinfeldt.jpg'],
                                 ['April 2013', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['Januari 2014', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
+                                ['September 2006', 's', 'Göran Persson', '', 'Persson.jpg'],
                                 ['Mars 2007', 's', 'Göran Persson', 'Här avgick Göran och ersättes av Mona Sahlin', 'Persson.jpg'],
                                 ['Oktober 2007', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['September 2008', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
@@ -73,7 +82,8 @@
                                 ['September 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['November 2011', 's', 'Håkan Juholt', 'Så här gick det under Juholts tid', 'Juholt.jpg'],
                                 ['Mars 2012', 's', 'Stefan Löfven', 'Stefan tar över S', 'Lofven.jpg'],
-                                ['April 2013', 's', 'Stefan Löfven', '', 'Lofven.jpg']
+                                ['April 2013', 's', 'Stefan Löfven', '', 'Lofven.jpg'],
+                                ['Januari 2014', 's', 'Stefan Löfven', '', 'Lofven.jpg']
                 ];
 
                 var getTooltipInfo = function (date) {
@@ -108,7 +118,7 @@
 
                     
                     str = '<table class="tt">' + str + '<tr><td colspan="2">' + extraText + '</td></tr></table>';
-                    return '<div>XXX</div>';
+                    return str;
                 };
 
                 var getExtraTooltipText = function (text) {
@@ -140,7 +150,7 @@
                 $('#SelectQuestion').change(function () {
                     var type = $(this).val();
                     
-                    var jsonFilePath = 'ImportedFiles/ChartData_' + type + '.js';
+                    var jsonFilePath = 'js//data/' + type + '.js';
                     var myChart = $("#BarWrapper").highcharts();
 
                     $(myChart.series).each(function (index) {
@@ -188,7 +198,7 @@
                 var thisChartSeries = [];
                 var categoriesData = [];
 
-                var jsonObj = jQuery.getJSON('ImportedFiles/ChartData_82.js', function (data) {
+                var jsonObj = jQuery.getJSON('js/data/Foretrada-2014-03.js', function (data) {
 
                 });
 
@@ -345,12 +355,6 @@
             });
         </script>
         <br/>
-        <select id="SelectQuestion">
-            <option value="82">Skapa en majoritet för sin politik i riksdagen </option>
-            <option value="80">Leda regeringens arbete </option>
-            <option value="79">Företräda Sverige utomlands </option>
-            <option value="83">Ingjuta hopp om en bättre framtid för oss som bor i Sverige </option>
-            <option value="84">Att leda Sverige i händelse av en allvarlig kris </option>
-</select>
+
 </body>
 </html>

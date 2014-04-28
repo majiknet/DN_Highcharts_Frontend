@@ -126,7 +126,7 @@ var getPartiName = function(partiName)
                 var $legendNavItem;
                 $.each(this.series, function (i, legend) {
                     
-                    if (legend.name !== 'custom') {
+                    if (legend.name !== 'custom' && legend.name.toLowerCase() !== 'navigator') {
                         $legendNavItem = $('<a href="javascript:void(0)">'+
                             '<span><span class="' + selector.itemTitle + '">' + getPartiName(legend.name) + '</span><span class="' + selector.iconClass + '"></span></span>'+
                             '</a>').addClass(selector.button + ' ' + selector.iconPrefix + legend.name.toLowerCase() || 'default');
