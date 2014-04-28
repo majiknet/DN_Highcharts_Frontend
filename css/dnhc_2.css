@@ -8,6 +8,7 @@
 
 .dnhc_legend-nav__container {
     padding: 1.5em 10px;
+    padding-bottom: 0;
 }
 
 .dnhc_legend-nav {
