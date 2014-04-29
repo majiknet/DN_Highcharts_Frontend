@@ -61,7 +61,7 @@
             $(document).ready(function () {
                 var extraData = [
                                 ['September 2006', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
-                                ['Mars 2007', 'm', 'Fredrik Reinfeldt', 'Cras eu tortor gravida, mattis nisl sit amet', 'Reinfeldt.jpg'],
+                                ['Mars 2007', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['Oktober 2007', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['September 2008', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['September 2009', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
@@ -69,19 +69,19 @@
                                 ['Juni 2010', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['September 2010', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['November 2011', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
-                                ['Mars 2012', 'm', 'Fredrik Reinfeldt', 'Reinfeldt tappar när Löfven kliver in', 'Reinfeldt.jpg'],
+                                ['Mars 2012', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['April 2013', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['Januari 2014', 'm', 'Fredrik Reinfeldt', '', 'Reinfeldt.jpg'],
                                 ['September 2006', 's', 'Göran Persson', '', 'Persson.jpg'],
-                                ['Mars 2007', 's', 'Göran Persson', 'Här avgick Göran och ersättes av Mona Sahlin', 'Persson.jpg'],
+                                ['Mars 2007', 's', 'Göran Persson', '', 'Persson.jpg'],
                                 ['Oktober 2007', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['September 2008', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['September 2009', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['Mars 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['Juni 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
                                 ['September 2010', 's', 'Mona Sahlin', '', 'Sahlin.jpg'],
-                                ['November 2011', 's', 'Håkan Juholt', 'Så här gick det under Juholts tid', 'Juholt.jpg'],
-                                ['Mars 2012', 's', 'Stefan Löfven', 'Stefan tar över S', 'Lofven.jpg'],
+                                ['November 2011', 's', 'Håkan Juholt', '', 'Juholt.jpg'],
+                                ['Mars 2012', 's', 'Stefan Löfven', '', 'Lofven.jpg'],
                                 ['April 2013', 's', 'Stefan Löfven', '', 'Lofven.jpg'],
                                 ['Januari 2014', 's', 'Stefan Löfven', '', 'Lofven.jpg']
                 ];
@@ -149,7 +149,7 @@
                 $('#SelectQuestion').change(function () {
                     var type = $(this).val();
                     
-                    var jsonFilePath = 'js//data/' + type + '.js';
+                    var jsonFilePath = 'js/data/' + type + '.js';
                     var myChart = $("#BarWrapper").highcharts();
 
                     $(myChart.series).each(function (index) {

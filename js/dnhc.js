@@ -15,6 +15,22 @@
         return 'ontouchstart' in window || 'onmsgesturechange' in window;
     };
     
+    var newdDisplayNamesArray = [['o-säk','Osäkra'],['övr','Övriga']];
+
+    var checkNameForCorrectDisplayname = function(name)
+    {
+        var out = name;
+        $.each(newdDisplayNamesArray, function (index)  
+        {
+            if (newdDisplayNamesArray[index][0] == name)
+            {
+                out = newdDisplayNamesArray[index][1];
+                return false;
+            }
+        }); 
+        return out;  
+    }   
+
     dateTimeChartData = this.dateTimeChartData;
 
     Highcharts.theme = {
@@ -520,37 +536,20 @@
                         $navItem.toggleClass(selector.legendNav.buttonInactive);
 
                     },
-
                     hideAllSeries: function () {
-
-                        $.each(this.series, function (i, serie) {
-
-                            if (serie.visible) {
-                                serie.hide();
-                            }
-
+                        var chart = $('#dateTimeChart').highcharts();
+                        $.each(chart.series, function (i, series) {
+                            chart.series[i].hide();
                         });
-
                         this.$legendNav.find('.' + selector.legendNav.button).addClass(selector.legendNav.buttonInactive);
-
                     },
-
                     showAll: function () {
-
-                        var self = this;
-
-                        $.each(this.series, function (i, serie) {
-
-                            if (!serie.visible) {
-                                serie.setVisible();
-                            }
-
+                        var chart = $('#dateTimeChart').highcharts();
+                        $.each(chart.series, function (i, series) {
+                            chart.series[i].show();
                         });
-
-                        self.$legendNav.find('.' + selector.legendNav.buttonInactive).removeClass(selector.legendNav.buttonInactive);
-
-                    },
-
+                        this.$legendNav.find('.' + selector.legendNav.buttonInactive).removeClass(selector.legendNav.buttonInactive);
+                    },  
                     createTogglers: function () {
 
                         var self = this;
@@ -629,7 +628,7 @@
                         $.each(this.series, function (i, legend) {
 
                             if (self.series[i].name !== 'custom' && legend.name.toLowerCase() !== 'navigator') {
-                                $legendNavItem = $('<a href="javascript:void(0)"><span><span class="' + selector.legendNav.itemTitle + '">' + legend.name + '</span><span class="' + selector.legendNav.iconClass + '"></span></span></a>').addClass(selector.legendNav.button + ' ' + selector.legendNav.iconPrefix + legend.name.toLowerCase() || 'default');
+                                $legendNavItem = $('<a href="javascript:void(0)"><span><span class="' + selector.legendNav.itemTitle + '">' + checkNameForCorrectDisplayname(legend.name) + '</span><span class="' + selector.legendNav.iconClass + '"></span></span></a>').addClass(selector.legendNav.button + ' ' + selector.legendNav.iconPrefix + legend.name.toLowerCase() || 'default');
                                 self.$legendNav.append($legendNavItem);
 
                             }
