@@ -163,7 +163,7 @@
             maxZoom: 24 * 3600 * 1000,
             labels: {
                 align: 'center',
-                y: 25
+                y: 20
             },
             dateTimeLabelFormats: {
                 second: '%H:%M:%S',
