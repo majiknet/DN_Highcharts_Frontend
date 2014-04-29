@@ -93,18 +93,28 @@
             text: 'Partisympatier 1979-2014',
             align: 'left'
         },
-        /*
-        tooltip: {
-            shared: false,
-            useHtml: true
-
-        },*/
         navigator: {
-            adaptToUpdatedData: true,
+             adaptToUpdatedData: true,
             baseSeries: 0,
             handles: {
                 backgroundColor: '#d9dadb',
                 borderColor: '#777'
+            },
+            height: 20,
+            xAxis: {
+                labels:{
+                    enabled: false
+                },
+                gridLineColor: "#fff",
+            },
+            series: {
+                lineWidth: 0,
+                data: [{
+                    marker: {
+                        enable: false
+                    }
+                }]
+
             }
         },
         scrollbar: {
